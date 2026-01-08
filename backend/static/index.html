@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISL-Vision</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <h1>ISL-Vision</h1>
+
+        <!-- Video Container -->
+        <div class="video-container">
+            <img id="videoStream" src="" alt="Video Stream">
+            <div id="placeholder" class="placeholder">
+                <p>Click "Start Backend Webcam" to begin</p>
+            </div>
+        </div>
+
+        <!-- Word Display -->
+        <div class="word-display" id="wordDisplay">[empty]</div>
+
+        <!-- Control Buttons -->
+        <div class="controls">
+            <button id="startBtn" class="btn btn-primary">Start Backend Webcam</button>
+            <button id="spaceBtn" class="btn btn-success">Add Space</button>
+            <button id="deleteBtn" class="btn btn-warning">Delete Last</button>
+            <button id="clearBtn" class="btn btn-secondary">Clear Word</button>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>📋 How it works:</h3>
+            <ul>
+                <li>Click "Start Backend Webcam" - the server opens its webcam</li>
+                <li>Video stream shows what the server's camera sees</li>
+                <li>All hand detection and gesture recognition happens on the backend</li>
+                <li>Show hand gestures and hold steady for 5 seconds</li>
+                <li>Letters will be added automatically when confidence is high enough</li>
+            </ul>
+        </div>
+
+        <!-- Status -->
+        <div id="status" class="status">Ready</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

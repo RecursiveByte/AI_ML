@@ -1,0 +1,11 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# ML / heavy stuff
+*.dll
+*.pyd
+
+# OS
+.DS_Store
