@@ -10,3 +10,5 @@ opencv-python<4.12
 mediapipe==0.10.31
 
 starlette>=0.40,<0.51
+joblib==1.5.3
+
