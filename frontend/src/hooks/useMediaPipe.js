@@ -9,8 +9,19 @@ export const useMediaPipe = (videoRef, canvasRef) => {
 
   const initMediaPipe = async () => {
     try {
-      const { Hands } = await import("@mediapipe/hands");
-      const { Camera } = await import("@mediapipe/camera_utils");
+      // Import modules
+      const handsModule = await import("@mediapipe/hands");
+      const cameraModule = await import("@mediapipe/camera_utils");
+
+      // Handle both default and named exports
+      const Hands = handsModule.Hands || handsModule.default?.Hands || handsModule.default;
+      const Camera = cameraModule.Camera || cameraModule.default?.Camera || cameraModule.default;
+
+      if (!Hands || !Camera) {
+        throw new Error("Failed to load MediaPipe modules");
+      }
+
+      console.log("MediaPipe modules loaded successfully");
 
       const hands = new Hands({
         locateFile: (file) =>
@@ -40,8 +51,11 @@ export const useMediaPipe = (videoRef, canvasRef) => {
       cameraRef.current = camera;
       camera.start();
       
+      console.log("MediaPipe initialized successfully");
+      
     } catch (err) {
       console.error("MediaPipe initialization error:", err);
+      alert("Failed to initialize hand detection. Please refresh the page.");
     }
   };
 
@@ -49,6 +63,11 @@ export const useMediaPipe = (videoRef, canvasRef) => {
     if (cameraRef.current) {
       cameraRef.current.stop();
       cameraRef.current = null;
+    }
+
+    if (handsRef.current) {
+      handsRef.current.close();
+      handsRef.current = null;
     }
 
     if (animationRef.current) {
